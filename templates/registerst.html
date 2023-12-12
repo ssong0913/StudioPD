@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/registerst.css">
+</head>
+<body>
+    <form action="/registerst" method="POST">
+        <div class="wrap">
+            <div class="login">
+                <h2>회원가입</h2>
+                <div class="login_id">
+                    <h4>이름</h4>
+                    <input type="text" name="username" id="" placeholder="이름">
+                </div>
+                <div class="login_id">
+                    <h4>이메일</h4>
+                    <input type="email" name="email" id="" placeholder="이메일">
+                </div>
+                <div class="login_id">
+                    <h4>핸드폰번호</h4>
+                    <input type="text" name="phone" id="cellPhone" placeholder="핸드폰번호" maxlength="13">
+                </div>
+                <div class="login_pw">
+                    <h4>비밀번호</h4>
+                    <input type="password" name="password" id="" placeholder="Password">
+                </div>
+        
+        
+                <div class="submit">
+                    <button type="submit">회원가입</button>
+                </div>
+        
+            </div>
+        </div>
+    </form>
+</body>
+
+
+<script>
+	function autoHypenPhone(str){
+            str = str.replace(/[^0-9]/g, '');
+            var tmp = '';
+            if( str.length < 4){
+                return str;
+            }else if(str.length < 7){
+                tmp += str.substr(0, 3);
+                tmp += '-';
+                tmp += str.substr(3);
+                return tmp;
+            }else if(str.length < 11){
+                tmp += str.substr(0, 3);
+                tmp += '-';
+                tmp += str.substr(3, 3);
+                tmp += '-';
+                tmp += str.substr(6);
+                return tmp;
+            }else{              
+                tmp += str.substr(0, 3);
+                tmp += '-';
+                tmp += str.substr(3, 4);
+                tmp += '-';
+                tmp += str.substr(7);
+                return tmp;
+            }
+            return str;
+        }
+
+var cellPhone = document.getElementById('cellPhone');
+cellPhone.onkeyup = function(event){
+        event = event || window.event;
+        var _val = this.value.trim();
+        this.value = autoHypenPhone(_val) ;
+}
+</script>
+
+</html>
